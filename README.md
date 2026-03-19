@@ -1,0 +1,2 @@
+# destinydle
+site destiny.dle
