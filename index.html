@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DESTINYDLE</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     HEADER + NAVIGATION
+     ═══════════════════════════════════════════════════ -->
+<header>
+  
+  <div class="logo">DESTINY.DLE</div>
+  <video autoplay muted loop id="header_video">
+  <source src="assets/d2-beyond_light.mp4" type="video/mp4">
+</video>
+  <nav class="mode-nav">
+    <button class="mode-btn active" data-mode="exo"      onclick="switchMode('exo')">⚔ Exo Classique</button>
+    <button class="mode-btn soon"   data-mode="citation" onclick="switchMode('citation')">💬 Citation</button>
+    <button class="mode-btn soon"   data-mode="art"      onclick="switchMode('art')">🖼 Art rogné</button>
+    <button class="mode-btn soon"   data-mode="icon"     onclick="switchMode('icon')">✦ Icône</button>
+  </nav>
+</header>
+
+<!-- ═══════════════════════════════════════════════════
+     MODAL — RÉPONSE SPOILER
+     ═══════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal(event)">✕</button>
+    <div class="modal-label">Réponse secrète</div>
+    <img class="modal-img" id="modalImg" src="" alt="">
+    <div class="modal-name" id="modalName"></div>
+    <div class="modal-meta" id="modalMeta"></div>
+    <div class="modal-warning">⚠ Spoiler — tu abandonnes cette partie !</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     CONTENU PRINCIPAL
+     ═══════════════════════════════════════════════════ -->
+<main>
+
+  <!-- Légende -->
+  <div class="legend">
+    <div class="legend-item c">✓ Correct</div>
+    <div class="legend-item p">↑↓ Extension proche</div>
+    <div class="legend-item w">✗ Incorrect</div>
+  </div>
+
+  <!-- Compteur de tentatives -->
+  <div class="counter" id="counterWrap" style="visibility:hidden">
+    Tentatives : <span id="tryCount">0</span>
+  </div>
+
+  <!-- Barre de recherche -->
+  <div class="search-wrap">
+    <input
+      class="search-input"
+      id="searchInput"
+      placeholder="Tape un nom d'arme exotique…"
+      oninput="onSearch()"
+      onkeydown="onSearchKey(event)"
+      autocomplete="off"
+    >
+    <div class="autocomplete" id="acList"></div>
+    <button class="guess-btn"  onclick="submitGuess()">Deviner</button>
+    <button class="reveal-btn" onclick="openModal()" title="Voir la réponse">👁</button>
+  </div>
+
+  <!-- En-têtes du tableau -->
+  <div class="grid-header">
+    <div class="col-label">Arme</div>
+    <div class="col-label">Type</div>
+    <div class="col-label">Élément</div>
+    <div class="col-label">Slot</div>
+    <div class="col-label">Munitions</div>
+    <div class="col-label">Extension</div>
+  </div>
+
+  <!-- Lignes de réponses -->
+  <div id="guessRows"></div>
+
+  <!-- Bannière résultat -->
+  <div class="result" id="result">
+    <div class="result-title" id="resultTitle"></div>
+    <div class="result-answer" id="resultAnswer"></div>
+    <div class="result-sub"   id="resultSub"></div>
+    <button class="new-game-btn" onclick="newGame()">Nouvelle partie →</button>
+  </div>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════
+     SCRIPTS  (ordre important : db → game → ui)
+     ═══════════════════════════════════════════════════ -->
+<script src="js/db.js"></script>
+<script src="js/game.js"></script>
+<script src="js/ui.js"></script>
+
+</body>
+</html>
