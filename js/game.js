@@ -119,11 +119,11 @@ function showResult(win) {
     : "La Lumière s'est éteinte…";
 
   document.getElementById('resultAnswer').innerHTML =
-    `<img src="${target.screenshot}" onerror="this.src='${target.icon}'" alt="">
-     <div>
-       <div class="aname">${target.name}</div>
-       <div class="ameta">${target.type} · ${target.element} · ${target.slot} · ${target.expansion}</div>
-     </div>`;
+  `<img src="${target.screenshot}" onerror="this.src='${target.icon}'" alt="">
+   <div>
+     <div class="aname">${target.name}</div>
+     <div class="ameta">${target.type} · ${target.element} · ${target.slot} · ${target.expansion}</div>
+   </div>`;
 
   document.getElementById('resultSub').textContent = win
     ? 'Bien joué, Gardien !'
